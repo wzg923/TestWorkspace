@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+       
+   <!-- <context:annotation-config/>  -->
+        
+    <!-- 自动扫描service类 -->
+   <context:component-scan base-package="com.my.springmvc" /> 
+
+     
+ 
+    <!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring bean对象 -->
+    <!-- <bean class="com.my.springmvc.base.SpringContextHolder" lazy-init="false" /> -->
+     
+    <!-- Spring就会在项目中搜索相关的国际化属性文件，如：message.properties、message_zh_CN.properties -->
+    <!-- 在VIEW中，引入Spring标签：<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>，使用<spring:message code="key" /> -->
+    <!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message01</value>
+				<value>message02</value>
+				<value>message03</value>
+			</list>
+		</property>
+	</bean> -->
+
+    
+     
+    
+ 
+     
+</beans>

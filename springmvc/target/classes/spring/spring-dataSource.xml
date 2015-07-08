@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- 引入dbconfig.properties属性文件 -->
+    <context:property-placeholder location="classpath:dbconfig.properties" />
+    
+	<!--创建jdbc数据源 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <property name="driverClassName" value="${driverClassName}"/>
+      <property name="url" value="${jdbc_url}"/>
+      <property name="username" value="${jdbc_username}"/>
+      <property name="password" value="${jdbc_password}"/>
+      <!-- 初始化连接大小 -->
+      <property name="initialSize" value="${initialSize}" />
+      <!-- 连接池最大使用连接数量 -->
+      <property name="maxActive" value="${maxActive}" />
+      <!-- 连接池最大空闲 -->
+      <property name="maxIdle" value="${maxIdle}" />
+      <!-- 连接池最小空闲 -->
+      <property name="minIdle" value="${minIdle}" />
+      <!-- 获取连接最大等待时间 -->
+      <property name="maxWait" value="${maxWait}" />
+      <!-- 
+        <property name="poolPreparedStatements" value="true" /> 
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="33" /> 
+        -->
+        <property name="validationQuery" value="${validationQuery}" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="testWhileIdle" value="true" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="25200000" />
+        <!-- 打开removeAbandoned功能 -->
+        <property name="removeAbandoned" value="true" />
+        <!-- 1800秒，也就是30分钟 -->
+        <property name="removeAbandonedTimeout" value="1800" />
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <property name="logAbandoned" value="true" />
+        <!-- 监控数据库 -->
+        <!-- <property name="filters" value="stat" /> -->
+        <!-- <property name="filters" value="mergeStat" /> -->
+    </bean>
+     
+    <!-- 配置SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:/mybatis/mybatisConfig.xml"/>
+        <!-- 自动扫描/mybatis/mappers/目录下的所有SQL映射的xml文件, 省掉Configuration.xml里的手工配置
+        value="classpath:/mybatis/mappers/**/*-mapper.xml"指的是classpath(类路径)下/mybatis/mappers包中的所有xml文件 -->
+        <property name="mapperLocations">
+            <list>
+                <!--  表示在包或以下所有目录中，以-mapper.xml结尾所有文件 -->
+                <value>classpath:/mybatis/mappers/**/*-mapper.xml</value>
+            </list>
+        </property> 
+    </bean>
+     
+    <!-- 配置mybatis dao注册，所有dao都继承sqlMapper
+    annotationClass：当指定了annotationClass的时候，MapperScannerConfigurer将只注册使用了annotationClass注解标记的接口。
+    markerInterface：markerInterface是用于指定一个接口的，当指定了markerInterface之后，MapperScannerConfigurer将只注册继承自markerInterface的接口。
+          如果上述两个属性都指定了的话，那么MapperScannerConfigurer将取它们的并集，而不是交集。即使用了annotationClass进行标记或者继承自markerInterface
+          的接口都将被注册为一个MapperFactoryBean。 
+          除了用于缩小注册Mapper接口范围的属性之外，我们还可以指定一些其他属性，如：
+    sqlSessionFactory：这个属性已经废弃。当我们使用了多个数据源的时候我们就需要通过sqlSessionFactory来指定在注册MapperFactoryBean的时候需要使用的SqlSessionFactory，
+        因为在没有指定sqlSessionFactory的时候，会以Autowired的方式自动注入一个。换言之当我们只使用一个数据源的时候，即只定义了一个SqlSessionFactory的时候我们就可以不给
+        MapperScannerConfigurer指定SqlSessionFactory。
+    sqlSessionFactoryBeanName：它的功能跟sqlSessionFactory是一样的，只是它指定的是定义好的SqlSessionFactory对应的bean名称。
+    sqlSessionTemplate：这个属性已经废弃。它的功能也是相当于sqlSessionFactory的，因为就像前面说的那样，MapperFactoryBean最终还是使用的SqlSession的getMapper
+    方法取的对应的Mapper对象。当定义有多个SqlSessionTemplate的时候才需要指定它。对于一个MapperFactoryBean来说SqlSessionFactory和SqlSessionTemplate只需要其中一个就可以了，
+    当两者都指定了的时候，SqlSessionFactory会被忽略。
+    sqlSessionTemplateBeanName：指定需要使用的sqlSessionTemplate对应的bean名称。-->
+    
+     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+     	<!-- 扫描com.my.springmvc.**.mybatis.mappers这个包以及它的子包下的所有映射接口类 -->
+        <property name="basePackage" value="com.my.springmvc.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <!-- <property name="markerInterface" value="com.my.springmvc.base.dao.BaseDAO"/> --> 
+    </bean> 
+	
+
+</beans>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.my.springmvc.dao.UserDAO">        
+  
+   <resultMap type="com.my.springmvc.entity.User" id="userResult">  
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="loginName" column="loginName" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="password" column="password" jdbcType="VARCHAR"/>
+		<result property="active" column="active" jdbcType="VARCHAR"/>
+		<result property="cppccUnit" column="cppccUnit" jdbcType="VARCHAR"/>
+		<result property="level" column="level" jdbcType="VARCHAR"/>
+		<result property="order" column="order" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!-- 新增用户  -->
+	<select id="addUser" parameterType="user">
+		insert into sys_user(id,loginName,name,password,[order],cppccUnit) 
+		values (#{id},#{loginName},#{name},#{password},#{order,jdbcType=INTEGER},#{cppccUnit})
+	</select>
+	
+	<!-- 修改信息 -->
+	<select id="updateUser" parameterType="user">
+		update sys_user 
+		<set>
+			<if test="loginName != null">loginName = #{loginName},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="password != null">password = #{password},</if>
+		</set>
+		where id = #{id}
+	</select>
+	
+	<!-- 查询所有用户 -->
+	<select id="findUserList" resultType="list" resultMap="userResult">
+		select * from sys_user
+	</select>
+	
+	
+	<!-- 根据用户ID查询用户信息  -->
+	<select id="findById" resultMap="userResult" parameterType="String" >
+		select * from sys_user where id = #{id}
+	</select>
+	
+	<!--  删除用户  -->
+	<select id="deletUser" parameterType="String">
+		delete from sys_user where id = #{id }
+	</select>    
+  
+</mapper>  

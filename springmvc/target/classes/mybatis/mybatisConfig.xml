@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="defaultExecutorType" value="SIMPLE" /><!-- SIMPLE REUSE BATCH -->
+		<!-- <setting name="defaultExecutorType" value="BATCH" /> -->
+		<setting name="defaultStatementTimeout" value="25000" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<setting name="localCacheScope" value="SESSION" />
+		<!-- <setting name="jdbcTypeForNull" value="OTHER" /> -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+	</settings>
+	<typeAliases>
+		<!-- =========================================================== -->
+	    <!-- 基础数据模块 模块                                                                                                                                                                             -->
+	    <!-- =========================================================== -->
+		<!-- <typeAlias alias="department" type="com.haier.gems.basic.domain.Department" />
+		<typeAlias alias="DepartmentLang" type="com.haier.gems.basic.domain.DepartmentLang"/>
+		<typeAlias alias="priGroup" type="com.haier.gems.privilege.domain.PriGroup" />
+		<typeAlias alias="priResource" type="com.haier.gems.privilege.domain.PriResource" />
+		<typeAlias alias="priResourceLang" type="com.haier.gems.privilege.domain.PriResourceLang" />
+		<typeAlias alias="priRole" type="com.haier.gems.privilege.domain.PriRole" />
+		<typeAlias alias="priUser" type="com.haier.gems.privilege.domain.PriUser"/>
+		<typeAlias alias="PriUserLang" type="com.haier.gems.privilege.domain.PriUserLang"/>
+		<typeAlias alias="groupUser" type="com.haier.gems.privilege.model.GroupUser" />
+		<typeAlias alias="userGroup" type="com.haier.gems.privilege.domain.UserGroup" />
+		<typeAlias alias="roleGroup" type="com.haier.gems.privilege.domain.RoleGroup" />
+		<typeAlias alias="dataDict" type="com.haier.gems.system.domain.DataDict" />
+		<typeAlias alias="mdLanguage" type="com.haier.gems.system.domain.MdLanguage" />
+		<typeAlias alias="mdTimezone" type="com.haier.gems.system.domain.MdTimezone" />
+		<typeAlias alias="easyUITreeNode" type="com.haier.gems.lookup.domain.EasyUITreeNode" /> -->
+		
+	</typeAliases>
+	
+	<!--  默认：可以省略
+	<typeHandlers>
+		<typeHandler handler="com.haier.openplatform.dao.mybatis.SerializableTypeHandler"/>
+	</typeHandlers> -->
+</configuration>
