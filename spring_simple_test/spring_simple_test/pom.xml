@@ -1,0 +1,180 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.spring.demo</groupId>
+	<artifactId>spring_simple_test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>com.spring.demo</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.2.3.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.2.3.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.2.7</version>
+		</dependency>
+		
+		
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>dubbo</artifactId>
+		    <version>2.5.3</version>
+		    <exclusions>
+		       <exclusion>
+		       <groupId>org.springframework</groupId>
+		       <artifactId>spring</artifactId>
+		      </exclusion>
+		   </exclusions>
+		</dependency>
+		  <dependency>
+             <groupId>com.haier.gems</groupId>
+             <artifactId>gems-service-client</artifactId>
+             <version>1.1-SNAPSHOT</version>
+          </dependency>
+        <dependency>
+        	<groupId>org.hamcrest</groupId>
+        	<artifactId>hamcrest-all</artifactId>
+        	<version>1.3</version>
+        	<scope>test</scope>
+      	</dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-web</artifactId>
+        	<version>3.2.1.RELEASE</version>
+        </dependency>
+        <dependency>
+	      <groupId>javax.servlet.jsp</groupId>
+	      <artifactId>jsp-api</artifactId>
+	      <version>2.1</version>
+	      <scope>provided</scope>
+    	</dependency>
+        <dependency>
+        	<groupId>org.apache.struts</groupId>
+        	<artifactId>struts2-core</artifactId>
+        	<version>2.3.15.1</version>
+        </dependency>
+        <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>servlet-api</artifactId>
+        	<version>2.5</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.struts</groupId>
+        	<artifactId>struts2-spring-plugin</artifactId>
+        	<version>2.3.15.1</version>
+        </dependency>
+       
+       <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+      </dependency>
+        <dependency>
+        	<groupId>json-lib</groupId>
+        	<artifactId>json-lib</artifactId>
+        	<version>2.2.3-jdk13</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.struts</groupId>
+        	<artifactId>struts2-json-plugin</artifactId>
+        	<version>2.3.15.1</version>
+        </dependency>
+       	<dependency>
+       		<groupId>javax.ws.rs</groupId>
+    		<artifactId>javax.ws.rs-api</artifactId>
+    		<version>2.0-m10</version>
+       	</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<skipTests>false</skipTests>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+		<!-- Maven私服配置 -->
+	<repositories>
+		 <repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>libs-release</name>
+			<url>http://10.135.6.66:8081/artifactory/libs-release</url>
+		</repository>
+		<repository>
+			<snapshots />
+			<id>snapshots</id>
+			<name>libs-snapshot</name>
+			<url>http://10.135.6.66:8081/artifactory/libs-snapshot</url>
+		</repository>
+		<repository>
+			<id>projectlombok.org</id>
+			<url>http://projectlombok.org/mavenrepo</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>plugins-release</name>
+			<url>http://10.135.6.66:8081/artifactory/plugins-release</url>
+		</pluginRepository>
+		<pluginRepository>
+			<snapshots />
+			<id>snapshots</id>
+			<name>plugins-snapshot</name>
+			<url>http://10.135.6.66:8081/artifactory/plugins-snapshot</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>libs-release-local</id>
+			<name>Team Artifactory Release Repository</name>
+			<url>http://10.135.6.66:8081/artifactory/libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>libs-snapshot-local</id>
+			<name>Team Artifactory Snapshot Repository</name>
+			<url>http://10.135.6.66:8081/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<!-- ~~~~~~~~~~Maven私服配置结束 -->
+</project>

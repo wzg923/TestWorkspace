@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<WL5G3N0:definitions name="TransAuthorityFromEDOCToGEMS" targetNamespace="http://www.example.org/TransAuthorityFromEDOCToGEMS/" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://www.example.org/TransAuthorityFromEDOCToGEMS/" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema targetNamespace="http://www.example.org/TransAuthorityFromEDOCToGEMS/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/TransAuthorityFromEDOCToGEMS/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="getAuth">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="tns:inType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAuthResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:long"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="inType">
+        <xsd:sequence>
+          <xsd:element name="docNo" type="xsd:string"/>
+          <xsd:element name="gemsToken" type="xsd:string"/>
+          <xsd:element name="edocToken" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="updateImageStatus">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="in" type="tns:inputType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateImageStatusResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="inputType">
+        <xsd:sequence>
+          <xsd:element name="businessType" type="xsd:string"/>
+          <xsd:element name="businessTypeCode" type="xsd:string"/>
+          <xsd:element name="docNo" type="xsd:string"/>
+          <xsd:element name="edocToken" type="xsd:string"/>
+          <xsd:element name="gemsToken" type="xsd:string"/>
+          <xsd:element name="imageStatus" type="xsd:string"/>
+          <xsd:element name="userId" type="xsd:string"/>
+          <xsd:element name="userName" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="getAuthRequest">
+    <WL5G3N0:part element="WL5G3N1:getAuth" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="getAuthResponse">
+    <WL5G3N0:part element="WL5G3N1:getAuthResponse" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="updateImageStatusRequest">
+    <WL5G3N0:part element="WL5G3N1:updateImageStatus" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="updateImageStatusResponse">
+    <WL5G3N0:part element="WL5G3N1:updateImageStatusResponse" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="TransAuthorityFromEDOCToGEMS">
+    <WL5G3N0:operation name="getAuth">
+      <WL5G3N0:input message="WL5G3N1:getAuthRequest"/>
+      <WL5G3N0:output message="WL5G3N1:getAuthResponse"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="updateImageStatus">
+      <WL5G3N0:input message="WL5G3N1:updateImageStatusRequest"/>
+      <WL5G3N0:output message="WL5G3N1:updateImageStatusResponse"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="TransAuthorityFromEDOCToGEMSSOAP" type="WL5G3N1:TransAuthorityFromEDOCToGEMS">
+    <WL5G3N2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="getAuth">
+      <WL5G3N2:operation soapAction="http://www.example.org/TransAuthorityFromEDOCToGEMS/getAuth"/>
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="updateImageStatus">
+      <WL5G3N2:operation soapAction="http://www.example.org/TransAuthorityFromEDOCToGEMS/updateImageStatus"/>
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="TransAuthorityFromEDOCToGEMS">
+    <WL5G3N0:port binding="WL5G3N1:TransAuthorityFromEDOCToGEMSSOAP" name="TransAuthorityFromEDOCToGEMSSOAP">
+      <WL5G3N2:address location="http://10.135.1.198:7001/EAI/RoutingProxyService/EAI_SOAP_ServiceRoot?INT_CODE=temp_service_537"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

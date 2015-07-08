@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<students className="高三1班" size="2">
+    <student>
+        <id>1</id>
+        <name>张三</name>
+        <sex>男</sex>
+        <age>22</age>
+        <telephone>1234567890</telephone>
+    </student>
+    <student>
+        <id>2</id>
+        <name>QQ</name>
+        <sex>女</sex>
+        <age>25</age>
+        <telephone>1234567890</telephone>
+    </student>
+</students>

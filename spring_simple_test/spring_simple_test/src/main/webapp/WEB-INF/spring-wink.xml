@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+
+<bean class="org.apache.wink.spring.Registrar">
+    <property name="classes">
+        <set value-type="java.lang.Class">
+        </set>
+    </property>
+    <property name="instances">
+        <set>
+           <ref local="HelloWorldResource" />
+           <ref local="WelcomeMessageResource"/>
+        </set>
+    </property>
+</bean> 
+
+<!-- Resources -->
+<!-- <bean id="resource.bookmarks" class="org.apache.wink.example.bookmarks.BookmarksResource" /> -->
+<bean id="HelloWorldResource" class="com.rest.webservice.HelloWorldResource"/>
+<bean id="WelcomeMessageResource" class="com.rest.webservice.WelcomeMessage"/>
+
+<!-- Custom proprties defintion -->
+	<!-- bookmarks.customPropertiesFactory defines loaded of the custom properties file -->
+	<bean id="wink.customPropertiesFactory"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>WEB-INF/wink.custom.properties
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- bookmarks.placeholderConfigurer overrides the default winkPropertiesFactory placeholder
+	     that causes Wink to use bookmarks.customPropertiesFactory instead of the default one -->
+	<bean id="wink.placeholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="order" value="1" />
+		<property name="propertiesArray">
+			<list>
+				<props>
+					<prop key="winkPropertiesFactory">wink.customPropertiesFactory
+					</prop>
+				</props>
+			</list>
+		</property>
+	</bean>
+	
+</beans>   

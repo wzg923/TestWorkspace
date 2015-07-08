@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
+	<classpathentry kind="lib" path="src/lib/httpclient-4.0.1.jar" sourcepath="src/lib/httpclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/wink-1.4.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
